@@ -1,98 +1,77 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var flag = top_img === true ? 'no-bg' : undefined
-    div#top-container(style=`background-image: url(${top_img})` class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="mysql基础操作"><meta name="keywords" content="Mysql"><meta name="author" content="Luo Jun,undefined"><meta name="copyright" content="Luo Jun"><title>mysql基础操作 | 不听风月</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.3"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  localSearch: undefined
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库登陆："><span class="toc-number">1.</span> <span class="toc-text">数据库登陆：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出数据库："><span class="toc-number">2.</span> <span class="toc-text">退出数据库：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程连接："><span class="toc-number">3.</span> <span class="toc-text">远程连接：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库操作"><span class="toc-number"></span> <span class="toc-text">数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建数据库"><span class="toc-number">1.</span> <span class="toc-text">1. 创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-删除数据库"><span class="toc-number">2.</span> <span class="toc-text">2. 删除数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-切换数据库"><span class="toc-number">3.</span> <span class="toc-text">3. 切换数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-查看所有的数据库"><span class="toc-number">4.</span> <span class="toc-text">4. 查看所有的数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-查看当前选择的数据库名"><span class="toc-number">5.</span> <span class="toc-text">5. 查看当前选择的数据库名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表操作"><span class="toc-number"></span> <span class="toc-text">表操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看当前数据库中的所有表"><span class="toc-number">1.</span> <span class="toc-text">1. 查看当前数据库中的所有表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建表"><span class="toc-number">2.</span> <span class="toc-text">2. 创建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改表"><span class="toc-number">3.</span> <span class="toc-text">3. 修改表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据操作"><span class="toc-number"></span> <span class="toc-text">数据操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备份与恢复"><span class="toc-number"></span> <span class="toc-text">备份与恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据备份"><span class="toc-number">1.</span> <span class="toc-text">数据备份</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://wx4.sinaimg.cn/mw690/956c1201ly1fq8znagr59j20600600ue.jpg"></div><div class="author-info__name text-center">Luo Jun</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">25</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container" style="background-image: url(true)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">不听风月</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">mysql基础操作</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/技术/">技术</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div id="post-content"><h3 id="数据库登陆："><a href="#数据库登陆：" class="headerlink" title="数据库登陆："></a>数据库登陆：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+<ol>
+<li>-u 后面跟着的登陆的用户名</li>
+</ol>
+<h3 id="退出数据库："><a href="#退出数据库：" class="headerlink" title="退出数据库："></a>退出数据库：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit或者exit</span><br></pre></td></tr></table></figure>
+<h3 id="远程连接："><a href="#远程连接：" class="headerlink" title="远程连接："></a>远程连接：</h3><p>一般在公司开发中，可能会将数据库统一搭建在一台服务器上，所有开发人员共用一个数据库，而不是在自己的电脑中配置一个数据库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -hip地址 -uroot -p</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>-h后面需写连接的主机ip</li>
+<li>-u后面写连接的用户名</li>
+<li>回车后写密码</li>
+</ol>
+<a id="more"></a>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1. 创建数据库"></a>1. 创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名称 charset=utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="2-删除数据库"><a href="#2-删除数据库" class="headerlink" title="2. 删除数据库"></a>2. 删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 数据库名称；</span><br></pre></td></tr></table></figure>
+<h3 id="3-切换数据库"><a href="#3-切换数据库" class="headerlink" title="3. 切换数据库"></a>3. 切换数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名;</span><br></pre></td></tr></table></figure>
+<h3 id="4-查看所有的数据库"><a href="#4-查看所有的数据库" class="headerlink" title="4. 查看所有的数据库"></a>4. 查看所有的数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<h3 id="5-查看当前选择的数据库名"><a href="#5-查看当前选择的数据库名" class="headerlink" title="5. 查看当前选择的数据库名"></a>5. 查看当前选择的数据库名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
+<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="1-查看当前数据库中的所有表"><a href="#1-查看当前数据库中的所有表" class="headerlink" title="1. 查看当前数据库中的所有表"></a>1. 查看当前数据库中的所有表</h3><p>show tables;</p>
+<h3 id="2-创建表"><a href="#2-创建表" class="headerlink" title="2. 创建表"></a>2. 创建表</h3><ul>
+<li>auto_increment 表示自动增长</li>
+<li>primary key表示把该列字段设置为主键<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(列及类型);</span><br><span class="line">如：</span><br><span class="line">create table students(</span><br><span class="line">id int auto_increment primary key,</span><br><span class="line">sname varchar(10) not null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-修改表"><a href="#3-修改表" class="headerlink" title="3. 修改表"></a>3. 修改表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add|change|drop 表名 类型;</span><br></pre></td></tr></table></figure>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table students add brithday datetime;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>该命令意为修改名称为studeents的表，给她增加一个brithday列类型为datetime;</p>
+</li>
+<li><p>删除表</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table 表名;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改表的名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename table 原表名 to 新表名;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看表的创建语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table 表名;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><ul>
+<li><p>查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名</span><br><span class="line">还可以后跟where语句，根据条件筛选出你所需要的数据</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">全列插入: insert into 表名 values(...) </span><br><span class="line">* 此时表中有多少个字段便按照结构顺序依次输入,插入一条。</span><br><span class="line"></span><br><span class="line">缺省插入: insert into 表名(列1,...) values(值1,...);</span><br><span class="line"></span><br><span class="line">同时插入多条数据: insert into 表名 values(...), (...)</span><br><span class="line">或insert into 表名(列1,...) values(值1,...);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列1=值1, ...  where 条件;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逻辑删除 本质就是修改操作update</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table students add isdelete bit default 0;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给studeents这一张表添加一个isdelete字段 类型为bit 默认值为0；</p>
+<p>  如需要删除则为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update students set isdelete=1 where ...;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="备份与恢复"><a href="#备份与恢复" class="headerlink" title="备份与恢复"></a>备份与恢复</h2><h3 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h3><ul>
+<li>进入超级管理员</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Luo Jun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="/2018/04/12/mysqlbase/">/2018/04/12/mysqlbase/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="" target="_blank">不听风月</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mysql/">Mysql</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/04/12/mysqlcoll/"><i class="fa fa-chevron-left">  </i><span>mysql条件&amp;&amp;聚合</span></a></div><div class="next-post pull-right"><a href="/2018/04/12/mysqlgroup/"><span>mysql分组</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2018 By Luo Jun</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.3"></script><script src="/js/fancybox.js?version=1.5.3"></script><script src="/js/sidebar.js?version=1.5.3"></script><script src="/js/copy.js?version=1.5.3"></script><script src="/js/fireworks.js?version=1.5.3"></script><script src="/js/transition.js?version=1.5.3"></script><script src="/js/scroll.js?version=1.5.3"></script><script src="/js/head.js?version=1.5.3"></script></body></html>

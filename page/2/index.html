@@ -1,5 +1,106 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="Luo Jun,undefined"><meta name="copyright" content="Luo Jun"><title>今日种种 似水无痕 | 不听风月</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.3"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  localSearch: undefined
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="author-info"><div class="author-info__avatar text-center"><img src="https://wx4.sinaimg.cn/mw690/956c1201ly1fq8znagr59j20600600ue.jpg"></div><div class="author-info__name text-center">Luo Jun</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">25</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><nav class="no-bg" id="nav" style="background-image: url(true)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">不听风月</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="site-info"><div id="site-title">不听风月</div><div id="site-sub-title">今日种种 似水无痕</div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item"><a class="article-title" href="/2018/04/17/sassStudy/">Sass/Scss</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/前端/">前端</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/SASS-SCSS/">SASS/SCSS</a></span><div class="content">SASS/SCSS谨为作者笔记用
 
-block content
-  include includes/recent-posts.pug
-  include includes/pagination.pug
+在sass/scss文件的第一行，我们需要写上一行注释
+@charset”utf-8”
+以此当文件中存在中文时方才不会报错
+
+
+sass与scss的区别自行百度，这里默认为scss的用法
+scss的使用前需要安装Ruby，安装教程自行百度
+
+
+
+基本操作 安装配置 ...</div><a class="more" href="/2018/04/17/sassStudy/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/17/statusCode/">HTTP状态码</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/前端/">前端</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/HTTP/">HTTP</a></span><div class="content">HTTP状态码谨为作者笔记用
+
+2XX
+
+200 &amp; OK: 请求成功
+204 &amp; No Content: 请求处理成功，但没有资源可以返回
+206 &amp; Partial Content: 对资源某一部分进行请求(例如对于只加载了一半的图片剩余部分的请求)
+
+
+
+3XX
+
+30 ...</div><a class="more" href="/2018/04/17/statusCode/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/16/pymysql/">pymysql</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-16</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/python/">python</a></span><div class="content">pymsql谨为作者笔记用pymsql是python操作数据库的一个包，我们可以使用它对数据库进行操作。
+引入pymysql
+首先pip install pymysql,然后在文件中引入1import pymysql
+
+
+连接数据库1db=pymsql.connect(&apos;localhost ...</div><a class="more" href="/2018/04/16/pymysql/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/14/youshiyinian/">一年，又是一年</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/抒情/">抒情</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/随笔/">随笔</a></span><div class="content">一年，又是一年妈妈告诉我黑色与白色之间还有灰色，有些时候，退一步，会看见彩虹。不觉便已是一八年了仲春的时候了，一年一半的日子又快过去了。今夜，我独自一人，写下这些文字。遥想去年今日，尚端坐在教室里。仅一年，便已是相去甚远，境遇大不同了。这一年，闲下来看书的时间近无。人一旦不看书了，便感觉嘴笨了不少， ...</div><a class="more" href="/2018/04/14/youshiyinian/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlink/">mysql连接</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h1 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h1><ul>
+<li>我们先来看一个问题，查询每个学生的每个科目的分数</li>
+<li>学生姓名来源于students表，科目名称来源于subjects表，分数来源于scores表。如何将三个表放在一起查询呢？并将结果显示在同一个结果集中。</li>
+<li>答：当查询结果来源于多张表时，我们需要使用 连接查询</li>
+<li><p>关键找到表之间的关系，当前的关系是</p>
+<ul>
+<li>students表的 id – scores 表的 stuid</li>
+<li>subjects表的 id – scores 表的 subid</li>
+</ul>
+</li>
+<li><p>则上面问题的答案是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select students.sname,subjects.stitle,scores.score</span><br><span class="line">from scores</span><br><span class="line">inner join students on scores.stuid=student.id</span><br><span class="line">inner join subjects on scores.subid=subjects.id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询男生的姓名，平均分</p></div><a class="more" href="/2018/04/12/mysqlink/#more">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlrelation/">mysql关系</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><ul>
+<li>创建成绩表scores，结构如下<ul>
+<li>id</li>
+<li>学生</li>
+<li>科目</li>
+<li>成绩</li>
+</ul>
+</li>
+</ul></div><a class="more" href="/2018/04/12/mysqlrelation/#more">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlsort/">mysql排序</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><ul>
+<li>为了方便查看数据, 可以对数据进行排序</li>
+<li>语法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from tableName</span><br><span class="line">order by line1 asc|desc,line2 asc|desc,...;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>将表中的所有行数据按照列1进行排序，如果某些行列1的值相同，则按照列2排序，以此类推。</p>
+</li>
+<li><p>默认按照从小到大排序 asc。</p>
+</li>
+<li>asc 从小到大，升序。</li>
+<li>desc 从大到小，降序。</li>
+<li>查询未删除女生信息，按id降序</li>
+</ul></div><a class="more" href="/2018/04/12/mysqlsort/#more">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlcoll/">mysql条件&amp;&amp;聚合</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ul>
+<li>使用where进行筛选，结果为true的行会出现在结果集中。</li>
+<li>语法如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from tableName where 条件</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><ul>
+<li>等于 = 数据库中等于与编程语言中的区别是等于并不是两个等号</li>
+<li>大于 &gt;</li>
+<li>大于等于 &gt;=</li>
+<li>小于同上</li>
+<li>不等于 != 或 &lt;&gt;</li>
+<li>查询编号大于3的学生<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from tableName where id&gt;3;</span><br></pre></td></tr></table></figure>
+</li>
+</ul></div><a class="more" href="/2018/04/12/mysqlcoll/#more">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlbase/">mysql基础操作</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h3 id="数据库登陆："><a href="#数据库登陆：" class="headerlink" title="数据库登陆："></a>数据库登陆：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+<ol>
+<li>-u 后面跟着的登陆的用户名</li>
+</ol>
+<h3 id="退出数据库："><a href="#退出数据库：" class="headerlink" title="退出数据库："></a>退出数据库：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit或者exit</span><br></pre></td></tr></table></figure>
+<h3 id="远程连接："><a href="#远程连接：" class="headerlink" title="远程连接："></a>远程连接：</h3><p>一般在公司开发中，可能会将数据库统一搭建在一台服务器上，所有开发人员共用一个数据库，而不是在自己的电脑中配置一个数据库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -hip地址 -uroot -p</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>-h后面需写连接的主机ip</li>
+<li>-u后面写连接的用户名</li>
+<li>回车后写密码</li>
+</ol></div><a class="more" href="/2018/04/12/mysqlbase/#more">阅读更多</a><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/04/12/mysqlgroup/">mysql分组</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/技术/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Mysql/">Mysql</a></span><div class="content"><h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><ul>
+<li>按照字段分组，表示此字段相同的数据将会放到同一个组当中</li>
+<li>分组后，只能查询出相同的数据列，对于有差异的数据列无法出现在结果集中</li>
+<li>可以对分组后的数据进行统计，做聚合运算</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select line1，line2 from tableName gruop by line1, line2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询男女生总数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select gender as 性别,count(*)</span><br><span class="line">from tableName</span><br><span class="line">group by gender;</span><br></pre></td></tr></table></figure>
+</li>
+</ul></div><a class="more" href="/2018/04/12/mysqlgroup/#more">阅读更多</a><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2018 By Luo Jun</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.3"></script><script src="/js/fancybox.js?version=1.5.3"></script><script src="/js/sidebar.js?version=1.5.3"></script><script src="/js/copy.js?version=1.5.3"></script><script src="/js/fireworks.js?version=1.5.3"></script><script src="/js/transition.js?version=1.5.3"></script><script src="/js/scroll.js?version=1.5.3"></script><script src="/js/head.js?version=1.5.3"></script></body></html>
